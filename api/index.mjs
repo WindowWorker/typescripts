@@ -18,14 +18,26 @@ const hostTarget = 'www.typescriptlang.org';
 
 http.createServer(onRequest).listen(3000);
 
-
-
 let skipHeaders=['content-length','content-encoding'];
 
 async function onRequest(req, res) {
   try{
     lazyTimeout(res,5000)
   let localhost = req.headers['Host'];
+
+    if(!req.headers['bot-protection']){
+      res.Header('content-type',)
+      return res.end(`<!DOCTYPE html>
+      <html>
+      <head>
+      <meta http-equiv="refresh" content="0; url="https://go.patrickring.net/">
+      <script>location.replace('https://go.patrickring.net/');/script>
+      </head>
+      <body>
+      </body>
+      </html>`);
+    }
+
 
   if (req.url == '/ping') {
     res.statusCode = 200;
