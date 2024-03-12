@@ -25,6 +25,11 @@ async function onRequest(req, res) {
     lazyTimeout(res,5000)
   let localhost = req.headers['Host'];
 
+    if (`${req.headers['user-agent']}`.toLowerCase().includes('bot')) {
+      res.statusCode = 301;
+      res.setHeader('location','https://www.google.com')
+      return res.end();
+    }
     if(!req.headers['bot-protection']){
       res.setHeader('content-type','text/html')
       return res.end(`<!DOCTYPE html>
@@ -37,12 +42,6 @@ async function onRequest(req, res) {
       </body>
       </html>`);
     }
-    if (`${req.headers['user-agent']}`.toLowerCase().includes('bot')) {
-      res.statusCode = 301;
-      res.setHeader('location','https://www.google.com')
-      return res.end();
-    }
-
   if (req.url == '/ping') {
     res.statusCode = 200;
     return res.end();
