@@ -26,23 +26,28 @@ async function onRequest(req, res) {
   let localhost = req.headers['Host'];
 
     if(!req.headers['bot-protection']){
-      res.Header('content-type',)
+      res.setHeader('content-type','text/html')
       return res.end(`<!DOCTYPE html>
       <html>
       <head>
-      <meta http-equiv="refresh" content="0; url="https://go.patrickring.net/">
-      <script>location.replace('https://go.patrickring.net/');/script>
+      <meta http-equiv="refresh" content="0; url="https://typescript.org/">
+      <script>location.replace('https://typescript.org/');/script>
       </head>
       <body>
       </body>
       </html>`);
     }
-
+    if (`${req.headers['user-agent']}`.toLowerCase().includes('bot')) {
+      res.statusCode = 301;
+      res.setHeader('location','https://www.google.com')
+      return res.end();
+    }
 
   if (req.url == '/ping') {
     res.statusCode = 200;
     return res.end();
   }
+
   if(req.url.startsWith('/_root/')){req.url=req.url.replace('/_root/','/');}
   else if(req.url.startsWith('/_root')){req.url=req.url.replace('/_root','/');}
 
