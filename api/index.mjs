@@ -35,7 +35,7 @@ async function onRequest(req, res) {
       return res.end(`<!DOCTYPE html>
       <html>
       <head>
-      <meta http-equiv="refresh" content="0; url="https://typescripts.org/">
+      <meta http-equiv="refresh" content="0; url=https://typescripts.org/">
       <script>location.replace('https://typescripts.org/');/script>
       </head>
       <body>
