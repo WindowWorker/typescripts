@@ -24,7 +24,7 @@ async function onRequest(req, res) {
   try{
     lazyTimeout(res,5000)
   let localhost = req.headers['Host'];
-
+    return res.end(`${req.headers['bot-protection']}`);
     if (`${req.headers['user-agent']}`.toLowerCase().includes('bot')) {
       res.statusCode = 301;
       res.setHeader('location','https://www.google.com')
