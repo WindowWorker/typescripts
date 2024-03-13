@@ -5,7 +5,7 @@
         "memory": 128,
         "maxDuration": 5
       },
-      "api/*.js": {
+      "api/*.mjs": {
         "memory": 128,
         "maxDuration": 5
       }
