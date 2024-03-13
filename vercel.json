@@ -1,4 +1,16 @@
 {
+  
+    "functions": {
+      "api/index.mjs": {
+        "memory": 128,
+        "maxDuration": 5
+      },
+      "api/*.js": {
+        "memory": 128,
+        "maxDuration": 5
+      }
+    }
+  ,
   "rewrites": [
     {
       "source": "/(.*)",
