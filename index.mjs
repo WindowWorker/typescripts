@@ -5,7 +5,9 @@ Root Fallback
 </style>
 <script>
 void async function(){
-
+if(location.host.endsWith('vercel.app')){
+location.replace('https://typescripts.org/');
+}
 let root=await fetch('/_root');
 let homePage=await root.text();
 
