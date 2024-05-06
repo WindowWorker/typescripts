@@ -74,7 +74,9 @@ async function onRequest(req, res) {
     bdy = new Promise(resolve=>{req.on('end',resolve);});
     
   let reqHeaders = {}
+  let reqHeaderNum = 0;
   for (const property in req.headers) {
+    if(reqHeaderNum>50){break;}reqHeaderNum++;
     try {
       if (!skipHeaders.includes(property.toLowerCase())) {
         reqHeaders[property] = req.headers[property].replace(localhost,hostTarget);
@@ -104,8 +106,9 @@ async function onRequest(req, res) {
     
     /* fetch from your desired target */
     let response = await fetch('https://' + hostTarget + path, options);
-
+    let resHeaderNume = 0;
     for (let [key, value] of response.headers.entries()) {
+      if(resHeaderNum>50){break;}resHeaderNum++;
       res.setHeader(key, value);
     }
     for (let [key, value] of response.headers.keys()) {
